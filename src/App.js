@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import './App.css';
 import { Component } from 'react';
 
@@ -6,36 +6,38 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      name: { fName: "Adarsh", lName: "Singh" },
-      company: "Impulse",
-    }
-  }
+      monsters : [{
+        name: "Andy",
+        id: 1,
+      },
+      {
+        name: "becky",
+        id: 2,
+      },
+      {
+        name: "candy",
+        id: 3,
+      },
+      {
+        name: "dorky",
+        id: 4,
+      },
+      ]
+    };
+  };
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>The name is {this.state.name.fName} {this.state.name.lName}, works at {this.state.company}</p>
-          <button
-            onClick={() => {
-              this.setState(
-                () => {
-                  return {
-                    name: { fName: "Romy", lName: "Yomi" }
-                  }
-                },
-                () => {
+      <div className='App'>
+        {this.state.monsters.map((monst) => {
+          return <h1 key={monst.id}>{monst.name}</h1>
+        })
+        }
 
-                  console.log(this.state)
-                })
-
-            }}>Change Name</button>
-        </header>
       </div>
-    );
 
-  }
-
+    )
+  };
 }
 
 export default App;
