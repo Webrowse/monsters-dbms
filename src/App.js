@@ -3,27 +3,39 @@ import './App.css';
 import { Component } from 'react';
 
 class App extends Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
-      name: "Adarsh",
-  }}
-  render(){
+      name: { fName: "Adarsh", lName: "Singh" },
+      company: "Impulse",
+    }
+  }
+  render() {
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>The name is {this.state.name}</p>
-          <button 
-          onClick={()=>{
-            this.setState({name: "Romy"})
-          }}>Change Name</button>
+          <p>The name is {this.state.name.fName} {this.state.name.lName}, works at {this.state.company}</p>
+          <button
+            onClick={() => {
+              this.setState(
+                () => {
+                  return {
+                    name: { fName: "Romy", lName: "Yomi" }
+                  }
+                },
+                () => {
+
+                  console.log(this.state)
+                })
+
+            }}>Change Name</button>
         </header>
       </div>
     );
 
   }
-  
+
 }
 
 export default App;
