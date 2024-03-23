@@ -1,4 +1,5 @@
 
+import { render } from '@testing-library/react';
 import './App.css';
 import { Component } from 'react';
 
@@ -6,38 +7,28 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      monsters : [{
-        name: "Andy",
-        id: 1,
-      },
-      {
-        name: "becky",
-        id: 2,
-      },
-      {
-        name: "candy",
-        id: 3,
-      },
-      {
-        name: "dorky",
-        id: 4,
-      },
-      ]
+      monsters: []
     };
   };
+
+  componentDidMount() {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then((response) => response.json())
+      .then((users) => this.setState(
+        () => {
+          return { monsters: users }
+        }, () => { console.log(this.state) }
+      ))
+
+  }
 
   render() {
     return (
       <div className='App'>
-        {this.state.monsters.map((monst) => {
-          return <h1 key={monst.id}>{monst.name}</h1>
-        })
-        }
-
+        {this.state.monsters.map((monst) => (
+          <h1 key={monst.id} >{monst.name}</h1>))}
       </div>
-
     )
-  };
+  }
 }
-
 export default App;
