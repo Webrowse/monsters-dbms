@@ -3,6 +3,9 @@ import { render } from '@testing-library/react';
 import './App.css';
 import { Component } from 'react';
 
+import CardList from './components/card-list/card-list.component';
+
+
 class App extends Component {
   //Runs first, constructor exe used to initiate state
   constructor() {
@@ -46,7 +49,9 @@ class App extends Component {
         return monst.name.toLocaleLowerCase().includes(searchedString);
       });
     return (
+      
       <div className='App'>
+        <CardList />
         <input className='search-box'
           placeholder='Search Monster'
           onChange={onChange} />
