@@ -26,30 +26,35 @@ class App extends Component {
       ))
   }
 
+  onChange = (event) => {
+    const searchedString = event.target.value.toLocaleLowerCase();
+    //every keystroke is changing the state i.e. searchedString
+    this.setState(() => {
+      return { searchedString };
+    })
+  }
   render() {
-//runs 2nd and 4th,
+
+    const { monsters, searchedString } = this.state;
+    const { onChange } = this;
+
+    //runs 2nd and 4th,
     const filterMonster =
-      this.state.monsters.filter((monst) => {
+      monsters.filter((monst) => {
         //searchedState taken from inside the onChange event, so Used this.state.
         //lowercased array to match lowercase userInput i.e. searchedString
-        return monst.name.toLocaleLowerCase().includes(this.state.searchedString);
+        return monst.name.toLocaleLowerCase().includes(searchedString);
       });
     return (
       <div className='App'>
         <input className='search-box'
           placeholder='Search Monster'
-          onChange={(event) => {
-            const searchedString = event.target.value.toLocaleLowerCase();
-            //every keystroke is changing the state i.e. searchedString
-            this.setState(() => {
-              return { searchedString };
-            })
-          }} />
+          onChange={onChange} />
 
         {
-        // maping through new array instead this.state.monster why?
-        filterMonster.map((monst) => (
-          <h1 key={monst.id} >{monst.name}</h1>))}
+          // maping through new array instead this.state.monster why?
+          filterMonster.map((monst) => (
+            <h1 key={monst.id} >{monst.name}</h1>))}
 
       </div>
     )
