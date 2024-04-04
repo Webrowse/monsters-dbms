@@ -1,8 +1,6 @@
-
-import { render } from '@testing-library/react';
 import './App.css';
 import { Component } from 'react';
-
+import SearchBox from './components/card-list/search-box.component';
 import CardList from './components/card-list/card-list.component';
 
 
@@ -38,10 +36,9 @@ class App extends Component {
   }
   render() {
 
-    const { monsters, searchedString } = this.state;
+    const { monsters, searchedString, monst } = this.state;
     const { onChange } = this;
 
-    //runs 2nd and 4th,
     const filterMonster =
       monsters.filter((monst) => {
         //searchedState taken from inside the onChange event, so Used this.state.
@@ -49,17 +46,18 @@ class App extends Component {
         return monst.name.toLocaleLowerCase().includes(searchedString);
       });
     return (
-      
-      <div className='App'>
-        <CardList />
-        <input className='search-box'
-          placeholder='Search Monster'
-          onChange={onChange} />
 
+      <div className='App'>
+        <CardList monsters = {filterMonster}/>
         {
+          <SearchBox 
+          onChangeHandler = {this.onChange} 
+          placeholder = 'Search Monster' />
+          }
+
+        
           // maping through new array instead this.state.monster why?
-          filterMonster.map((monst) => (
-            <h1 key={monst.id} >{monst.name}</h1>))}
+          
 
       </div>
     )
