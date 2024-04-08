@@ -1,8 +1,8 @@
 import './App.css';
 import { Component } from 'react';
-import SearchBox from './components/card-list/search-box.component';
+import SearchBox from './components/search-box/search-box.component';
 import CardList from './components/card-list/card-list.component';
-
+import './components/search-box/search-box.styles.css'
 
 class App extends Component {
   //Runs first, constructor exe used to initiate state
@@ -23,7 +23,7 @@ class App extends Component {
       .then((users) => this.setState(
         () => {
           return { monsters: users }
-        }, () => { console.log(this.state) }
+        }
       ))
   }
 
@@ -36,7 +36,7 @@ class App extends Component {
   }
   render() {
 
-    const { monsters, searchedString, monst } = this.state;
+    const { monsters, searchedString } = this.state;
     const { onChange } = this;
 
     const filterMonster =
@@ -48,19 +48,19 @@ class App extends Component {
     return (
 
       <div className='App'>
-        <CardList monsters = {filterMonster}/>
+
         {
-          <SearchBox 
-          onChangeHandler = {this.onChange} 
-          placeholder = 'Search Monster' />
-          }
-
-        
-          // maping through new array instead this.state.monster why?
-          
-
+          <SearchBox
+            className='search-box'
+            onChangeHandler={onChange}
+            placeholder='Search Monster' />
+        }
+        <CardList monsters={filterMonster} />
       </div>
     )
   }
 }
 export default App;
+
+
+
