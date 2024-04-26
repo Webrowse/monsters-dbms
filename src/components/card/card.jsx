@@ -7,7 +7,7 @@ const CardRender = ({ monsters : { name, email, id } }) => {
         return(
                     <div className="card-container" key={id}>
                         <img alt={`monster ${name}`} 
-                        src={`https://robohash.org/${id}/set1`} />
+                        src={`https://robohash.org/${id}/set1?size=200x200`} />
                         <h2>{name}</h2>
                         <p>{email}</p>
                     </div>
